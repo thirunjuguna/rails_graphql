@@ -5,3 +5,18 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Book.delete_all
+User.delete_all
+
+10.times do
+  User.create(
+      email: Faker::Internet.email,
+      name: Faker::Name.name
+  )
+end
+
+User.all.map do |user|
+    user.books.create(
+        title: 'Book title'
+    )
+end
